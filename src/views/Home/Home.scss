@@ -1,0 +1,17 @@
+.home {
+    background-color: #4b636e;
+    .hero-team{
+        display:grid;
+        grid-template-columns: 33.333% 33.333% 33.333%;
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 800px){
+    .home {
+        .hero-team{
+            display: grid;
+            grid-template-columns: 100%;
+        }
+    }
+}
