@@ -2,13 +2,6 @@ import { Button } from "react-bootstrap"
 import "./HeroCard.scss"
 
 export const HeroCard = (props) => {
-    let heroes = props.heroes
-
-    const deleteHero = () => {
-        heroes = heroes.filter( hero => hero.id !== props.id)
-        console.log(heroes)
-        props.getHeroes(heroes)
-    }
 
     return (
         <div className="card-wrapper">
@@ -23,7 +16,7 @@ export const HeroCard = (props) => {
                     <span>Combat: {props.combat}</span>
                 </div>
                 <div className="buttons">
-                    <Button onClick={deleteHero}>Delete</Button>
+                    <Button onClick={() => props.deleteHero(props.name)}>Delete</Button>
                     <Button>Details</Button>
                 </div>
             </div>

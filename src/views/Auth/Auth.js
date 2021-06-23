@@ -13,7 +13,6 @@ const schema = Yup.object().shape({
 
 export const Auth = () => {
     const history = useHistory()
-
     let userHasToken = isAuthenticated()
 
     if(userHasToken === "User is authenticated"){

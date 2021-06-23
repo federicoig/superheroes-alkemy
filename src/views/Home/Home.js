@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { isAuthenticated } from "../../services/isAuthenticated.js"
 import { HeroCard } from "../../components/HeroCard/HeroCard.js"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchBar } from "../../components/SearchBar/SearchBar.js";
 import "./Home.scss"
 
@@ -9,15 +9,20 @@ export const Home = () => {
     const history = useHistory()
     let userHasToken = isAuthenticated()
 
-    const [heroes, setHeroes] = useState([])
-
-    const getHeroes = (newHeroes) => {
-        setHeroes(newHeroes)
-    }   
-
     if(userHasToken === "User isn't authenticated"){
         history.push("/auth")
     }
+
+    const [heroes, setHeroes] = useState([])
+
+    const deleteHero = (name) => {
+        const filteredHeroes = heroes.splice(heroes.findIndex(hero => hero.name === name), 1)
+        setHeroes(filteredHeroes)
+    }
+
+    const getHeroes = (newHero) => {
+        setHeroes(newHero)
+    } 
 
     return(
         <div className="home">
@@ -38,7 +43,7 @@ export const Home = () => {
                             power={hero.powerstats.power}
                             speed={hero.powerstats.speed}
                             strength={hero.powerstats.strength}
-                            getHeroes={getHeroes}
+                            deleteHero={deleteHero}
                             heroes={heroes}
                         />
                         )
